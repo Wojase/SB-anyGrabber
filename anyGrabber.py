@@ -42,10 +42,23 @@ print(gradient_text("""
 > made with ❤️ by W0jas
 """, "255;165;0", "255;69;0"))
 
-logfile = "grabbedIP.txt"
 process_name = "anydesk"
 pidlist = list()
 hostlist = list()
+
+logfile = os.path.join(os.path.expanduser("~"), "Documents", "grabbedIP.txt")
+
+try:
+    with open(logfile, "a") as f:
+        f.write("Test write\n")  # Test write operation
+except PermissionError:
+    print("ERROR: Permission denied. Check file permissions or try running the script as Administrator.")
+    exit()
+except Exception as e:
+    print(f"ERROR: Unable to open the file. {e}")
+    exit()
+
+print(f"Logfile will be stored at: {logfile}")
 
 print(gradient_text("Looking for AnyDesk...", "255;200;0", "255;69;0"))
 
